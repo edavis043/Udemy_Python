@@ -20,5 +20,4 @@ while True:
         case tk.WIN_CLOSED:
             break
 
-
 window.close()
