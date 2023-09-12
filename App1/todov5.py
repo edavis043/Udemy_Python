@@ -1,12 +1,17 @@
 import modules.todov4func1 as fn
 import PySimpleGUI as tk
 import time
+import os
+
+if not os.path.exists("todos.txt"):
+    with open("todos.txt", "w") as file:
+        pass
 
 tk.theme("DarkTeal12")
 clock = tk.Text('', key='clock')
 label = tk.Text("Enter the Todo:")
-input_label = tk.InputText(tooltip="Enter the Todo Item.", key="todo")
-add_button = tk.Button("Add")
+input_label = tk.InputText(key="todo")
+add_button = tk.Button(size=2, image_source="add.png", mouseover_colors="LightBlue2", tooltip="Add Item", key="Add")   # add_button = tk.Button("Add")
 list_box = tk.Listbox(values=fn.get_todos(), key='todos',
                       enable_events=True, size=[45, 10])
 edit_button = tk.Button("Edit")
