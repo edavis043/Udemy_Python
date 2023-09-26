@@ -1,4 +1,5 @@
 import pandas
+from abc import ABC, abstractmethod
 
 df = pandas.read_csv("hotels.csv", dtype={"id": str})
 
@@ -21,6 +22,16 @@ class Hotel:
         else:
             return False
 
+    @classmethod
+    def get_hotel_count(cls, data):
+        return len(data)
+
+
+class Ticket(ABC):
+    @abstractmethod
+    def generate(self):
+        pass
+
 
 class ReservationTicket:
     def __init__(self, customer_name, hotel_object):
@@ -36,4 +47,13 @@ class ReservationTicket:
         """
         return content
 
+    @property
+    def the_customer_name(self):
+        name = self.customer_name.strip()
+        name = name.title()
+        return name
 
+
+hotel1 = Hotel(hotel_id="188")
+tkt = ReservationTicket(customer_name="john  Smith ", hotel_object=hotel1)
+print(tkt.the_customer_name)
